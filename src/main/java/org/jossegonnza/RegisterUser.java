@@ -5,7 +5,7 @@ import java.util.UUID;
 public class RegisterUser {
 
     public User register(String email, String password) {
-        String userId = UUID.randomUUID().toString();
+        String userId = String.valueOf(UUID.randomUUID());
 
         isValidPassword(password);
 
@@ -18,4 +18,6 @@ public class RegisterUser {
         }
         return false;
     }
+
+
 }
