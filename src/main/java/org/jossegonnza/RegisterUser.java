@@ -13,7 +13,7 @@ public class RegisterUser {
     }
 
     public boolean isValidPassword(String password) {
-        if (password.length() > 8) {
+        if (password.length() > 8 && password.contains("_")) {
             return true;
         }
         return false;

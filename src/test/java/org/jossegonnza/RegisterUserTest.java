@@ -37,4 +37,17 @@ class RegisterUserTest {
         Assertions.assertFalse(registerUser.isValidPassword(password));
     }
 
+    @Test
+    public void password_should_be_contained_an_underscore() {
+        //Arrange
+        RegisterUser registerUser = new RegisterUser();
+        String password = "Password_";
+        String email = "test@example.com";
+
+        //Act
+        User user = registerUser.register(email, password);
+
+        //Assert
+        Assertions.assertTrue(registerUser.isValidPassword(password));
+    }
 }
