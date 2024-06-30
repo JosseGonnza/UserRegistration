@@ -1,8 +1,8 @@
 package org.jossegonnza;
 
 public class User {
-    private String email;
-    private String id;
+    private final String email;
+    private final String id;
 
     public User(String id, String email) {
         this.id = id;
