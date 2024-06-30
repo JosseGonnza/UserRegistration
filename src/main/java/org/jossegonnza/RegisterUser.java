@@ -6,6 +6,6 @@ public class RegisterUser {
     public User register(String email, String password) {
         String userId = UUID.randomUUID().toString();
 
-        return null;
+        return new User(userId, email);
     }
 }
