@@ -1,6 +1,7 @@
 package org.jossegonnza;
 
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public class RegisterUser {
 
@@ -8,6 +9,7 @@ public class RegisterUser {
         String userId = String.valueOf(UUID.randomUUID());
 
         isValidPassword(password);
+        isValidEmail(email);
 
         return new User(userId, email);
     }
@@ -19,5 +21,9 @@ public class RegisterUser {
         return false;
     }
 
-
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9-_.]+@[A-Za-z0-9.-]+$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
+    }
 }
