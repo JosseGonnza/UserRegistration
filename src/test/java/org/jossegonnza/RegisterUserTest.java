@@ -1,51 +1,52 @@
 package org.jossegonnza;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class RegisterUserTest {
 
     @Test
-    public void test_register_user() {
-        //Arrange
+    public void should_return_a_new_user() {
+        //Given
         String email = "test@example.com";
         String password = "Password_test";
         RegisterUser registerUser = new RegisterUser();
 
-        //Act
+        //When
         User user = registerUser.register(email, password);
 
-        //Assert
-        Assertions.assertNotNull(user);
-        Assertions.assertEquals(email, user.getEmail());
-        Assertions.assertTrue(user.getId() != null && !user.getId().isEmpty());
+        //Then
+        Assertions.assertThat(user).isNotNull();
+        Assertions.assertThat(email).isEqualTo(user.getEmail());
+        Assertions.assertThat(user.getId()).isNotNull();
+        Assertions.assertThat(user.getId()).isNotEmpty();
     }
 
     @Test
-    public void register_with_short_password() {
-        //Arrange
+    public void should_contained_at_least_8_characters() {
+        //Given
         RegisterUser registerUser = new RegisterUser();
         String password = "Pass";
         String email = "test@example.com";
 
-        //Act
+        //When
         User user = registerUser.register(email, password);
 
-        //Assert
-        Assertions.assertFalse(registerUser.isValidPassword(password));
+        //Then
+        Assertions.assertThat(registerUser.isValidPassword(password)).isEqualTo(false);
     }
 
     @Test
-    public void password_should_be_contained_an_underscore() {
-        //Arrange
+    public void should_be_contained_an_underscore() {
+        //Given
         RegisterUser registerUser = new RegisterUser();
         String password = "Password_";
         String email = "test@example.com";
 
-        //Act
+        //When
         User user = registerUser.register(email, password);
 
-        //Assert
-        Assertions.assertTrue(registerUser.isValidPassword(password));
+        //Then
+        Assertions.assertThat(registerUser.isValidPassword(password)).isEqualTo(true);
     }
 }
